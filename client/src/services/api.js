@@ -1,7 +1,10 @@
 // client/src/services/api.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api';
+export const API_URL = (
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV ? 'http://localhost:4000/api' : '/api')
+).replace(/\/+$/, '');
 
 // Create an axios instance with default config
 const api = axios.create({

@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Dashboard from './components/Dashboard';
+import { authAPI } from './services/api';
 import './App.css';
 
 function AppContent() {
@@ -18,12 +19,9 @@ function AppContent() {
     if (token && window.location.pathname === '/auth/callback') {
       localStorage.setItem('token', token);
 
-      fetch('http://localhost:4000/api/auth/me', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          localStorage.setItem('user', JSON.stringify(data.user));
+      authAPI.getMe()
+        .then((response) => {
+          localStorage.setItem('user', JSON.stringify(response.data.user));
           window.history.replaceState({}, '', '/');
           window.location.reload();
         })

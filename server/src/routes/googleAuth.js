@@ -2,6 +2,7 @@
 const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const { clientUrl } = require('../config/urls');
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.get(
   '/google/callback',
   passport.authenticate('google', {
     session: false,
-    failureRedirect: `${process.env.CLIENT_URL}/login?error=google-auth-failed`,
+    failureRedirect: `${clientUrl}/?error=google-auth-failed`,
   }),
   (req, res) => {
     // Passport attaches the user to req.user after successful authentication
@@ -31,7 +32,7 @@ router.get(
 
     // Redirect to the frontend with the token
     // The frontend will extract the token from the URL and store it
-    res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+    res.redirect(`${clientUrl}/auth/callback?token=${token}`);
   }
 );
 

@@ -1,10 +1,8 @@
 // client/src/components/AuthCallback.jsx
 import { useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { authAPI } from '../services/api';
 
 export default function AuthCallback() {
-  const { login } = useAuth();
-
   useEffect(() => {
     // Extract token from URL query parameters
     const params = new URLSearchParams(window.location.search);
@@ -15,12 +13,9 @@ export default function AuthCallback() {
       localStorage.setItem('token', token);
 
       // Fetch the user's profile and update auth state
-      fetch('http://localhost:4000/api/auth/me', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          localStorage.setItem('user', JSON.stringify(data.user));
+      authAPI.getMe()
+        .then((response) => {
+          localStorage.setItem('user', JSON.stringify(response.data.user));
           // Redirect to dashboard
           window.location.href = '/';
         })
