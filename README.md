@@ -11,9 +11,9 @@
 4. Start the API with `npm run dev --prefix server`.
 5. In another terminal, start the frontend with `npm run dev --prefix client`.
 
-The local frontend uses `http://localhost:4000/api` by default. In production it
-uses the same-origin `/api` path, so the browser and API can share one Vercel
-deployment.
+The local frontend uses `http://localhost:4000/api` by default. In production
+it uses `https://secure-app-s3de.vercel.app/api` by default. Set
+`VITE_API_URL` at build time to override the production API URL.
 
 ## Deploy to Vercel
 

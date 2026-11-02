@@ -3,7 +3,9 @@ import axios from 'axios';
 
 export const API_URL = (
   import.meta.env.VITE_API_URL ||
-  (import.meta.env.DEV ? 'http://localhost:4000/api' : '/api')
+  (import.meta.env.DEV
+    ? 'http://localhost:4000/api'
+    : 'https://secure-app-s3de.vercel.app/api')
 ).replace(/\/+$/, '');
 
 // Create an axios instance with default config
