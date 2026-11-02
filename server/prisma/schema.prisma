@@ -1,0 +1,20 @@
+// server/prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DIRECT_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String?  // Optional -- OAuth users do not have a password
+  name         String
+  googleId     String?  @unique // Google's unique ID for this user
+  avatar       String?  // Profile photo URL from Google
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

@@ -1,0 +1,375 @@
+/* client/src/App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #fff;
+  color: #172033;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+}
+
+.auth-container {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  width: min(100%, 1600px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.auth-artwork {
+  height: min(88vh, 900px);
+  min-height: 480px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #15151d;
+}
+
+.auth-artwork img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.auth-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  padding: 2rem clamp(1rem, 4vw, 4rem);
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-form h2 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.auth-subtitle {
+  margin-bottom: 2rem;
+  color: #8992a3;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.35rem;
+  color: #818b9c;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  flex: 1;
+  height: 1px;
+  background: #d8dce4;
+  content: '';
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e4eb;
+  border-radius: 999px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #625bff;
+  box-shadow: 0 0 0 3px rgba(98, 91, 255, 0.14);
+}
+
+.auth-form .form-group label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.auth-form button[type='submit'] {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.75rem;
+  background: #625bff;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.auth-form button[type='submit']:hover {
+  background: #5149ed;
+}
+
+.auth-form button[type='submit']:disabled {
+  background: #aaa6ff;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background: #fee;
+  color: #c00;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  background: #e8f5e9;
+  color: #247a30;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.switch-form {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #625bff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .auth-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 12px;
+  }
+
+  .auth-artwork {
+    height: clamp(200px, 32vh, 300px);
+    min-height: 0;
+  }
+
+  .auth-panel {
+    padding: 2.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .auth-container {
+    padding: 0;
+  }
+
+  .auth-artwork {
+    height: 220px;
+    border-radius: 0;
+  }
+
+  .auth-panel {
+    padding: 2rem 1.25rem;
+  }
+}
+
+.dashboard {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 2rem max(2rem, calc((100vw - 800px) / 2));
+  background-color: #000;
+}
+
+.dashboard::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: #000;
+  background-image:
+    linear-gradient(45deg, transparent 47%, rgba(255, 255, 255, 0.5) 48%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 47%, rgba(255, 255, 255, 0.5) 48%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.28) 49%, rgba(255, 255, 255, 0.28) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.28) 49%, rgba(255, 255, 255, 0.28) 50%, transparent 51%);
+  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+  content: '';
+  pointer-events: none;
+}
+
+.dashboard-header,
+.dashboard-content {
+  width: min(100%, 800px);
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout-button {
+  padding: 0.5rem 1rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #c0392b;
+}
+
+.profile-button,
+.back-button {
+  padding: 0.5rem 1rem;
+  background: #625bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-button:hover,
+.back-button:hover {
+  background: #5149ed;
+}
+
+.back-button {
+  margin-bottom: 0.5rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+}
+
+.card p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.danger-card {
+  border: 1px solid #f1c4c0;
+}
+
+.delete-account-button {
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-account-button:hover {
+  background: #a93226;
+}
+
+.delete-account-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Add to client/src/App.css */
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem;
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.google-button:hover {
+  background: #f5f5f5;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.divider span {
+  padding: 0 1rem;
+  color: #888;
+  font-size: 0.85rem;
+}
