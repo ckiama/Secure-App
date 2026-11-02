@@ -24,8 +24,8 @@ the serverless Express function.
 Add these environment variables in the Vercel project's settings for each
 environment you deploy:
 
-- `CLIENT_URL`: the deployed frontend origin, without a trailing slash.
-- `GOOGLE_CALLBACK_URL`: `https://secure-app-s3de.vercel.app/api/auth/google/callback`
+- `CLIENT_URL`: `https://secure-app-iota.vercel.app` (without a trailing slash).
+- `GOOGLE_CALLBACK_URL`: `https://secure-app-iota.vercel.app/api/auth/google/callback`
 - `GOOGLE_CLIENT_ID`
 - `GOOGLE_CLIENT_SECRET`
 - `JWT_SECRET`

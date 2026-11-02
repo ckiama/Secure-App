@@ -1,7 +1,11 @@
 const trimTrailingSlashes = (url) => url.replace(/\/+$/, '');
 
+const defaultClientUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://secure-app-iota.vercel.app'
+    : 'http://localhost:5173';
 const clientUrl = trimTrailingSlashes(
-  process.env.CLIENT_URL || 'http://localhost:5173'
+  process.env.CLIENT_URL || defaultClientUrl
 );
 const serverUrl = trimTrailingSlashes(
   process.env.SERVER_URL ||
