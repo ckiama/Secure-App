@@ -1,13 +1,17 @@
 {
-  "installCommand": "npm ci --prefix client && npm ci --prefix server",
-  "buildCommand": "npm run build --prefix client",
+  "installCommand": "npm install --prefix client && npm install --prefix server",
+  "buildCommand": "npm run build --prefix client && npm run prisma:generate --prefix server",
   "outputDirectory": "client/dist",
   "functions": {
-    "api/[...path].js": {
+    "api/**": {
       "includeFiles": "server/**"
     }
   },
   "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/[...path]"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

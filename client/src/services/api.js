@@ -1,12 +1,26 @@
 // client/src/services/api.js
 import axios from 'axios';
 
-export const API_URL = (
-  import.meta.env.VITE_API_URL ||
-  (import.meta.env.DEV
-    ? 'http://localhost:4000/api'
-    : 'https://secure-app-s3de.vercel.app/api')
-).replace(/\/+$/, '');
+const getBaseApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    // Local development or local preview
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:4000/api';
+    }
+    // If running on the same domain as the deployed backend
+    if (host === 'secure-app-s3de.vercel.app') {
+      return '/api';
+    }
+  }
+  // Production backend deployed on Vercel
+  return 'https://secure-app-s3de.vercel.app/api';
+};
+
+export const API_URL = getBaseApiUrl().replace(/\/+$/, '');
 
 // Create an axios instance with default config
 const api = axios.create({
